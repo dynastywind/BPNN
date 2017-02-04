@@ -1,0 +1,95 @@
+doctype html
+html(lang="en")
+    head
+        title Nerual Network
+        //-script(src='js/MathJax/MathJax.js?config=TeX-MML-AM_CHTML' async)
+        script(src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML' async)
+        link(href='css/demo.css', rel='stylesheet', type='text/css')
+    body
+        #impress
+            .step(data-x='-3000', data-y='0' class='slide')
+                h1 Backpropagate Neural Network
+                .center
+                    img(src='img/first.jpg' height='400', width='700')
+                h3(class='subtitle') Lyndon Li
+                h5(class='subtitle') Email: yi.a.li@rakuten.com
+            .step(data-x='-1500', data-y='0' class='slide')
+                h2 Neural and Perceptron
+                img(src='img/neural.jpg' height='240' width='400')
+                img(src='img/perceptron.png' height='240' width='400' style='padding-left: 100px')
+                h5(class='subtitle')  A perceptron is an algorithm for supervised learning of binary classifiers.
+                div $$f(X)=\Theta^{T}X$$
+            .step(data-x='0', data-y='0' class='slide') 
+                h2 What can we do with perceptrons?
+                ul
+                    li Logical AND
+                    li Logical OR
+                    li Logical NOT
+                    li Other linear binary classfications
+            .step(data-x='1500', data-y='0', class='slide')
+                h2 Logistic Function
+                .center(style='background-color: white')
+                    img(src='img/logistic.png' height='350' width='700')
+                div $$g(t)=\frac{1}{1+e^{-t}}$$
+                h4 A continuous function in \(\mathbb{R}\) which maps outputs into a fixed range
+            .step(data-x='3000', data-y='0', class='slide')
+                h2 Neural Network and Forward Propagation
+                br
+                h4 What if the problem is not classifiable by linear classifiers?
+                ul
+                    li Logical XOR
+                    li ...
+                br
+                h3 Here comes the neural network
+            .step(data-x='4500', data-y='0', class='slide')
+                h2 Structure of Neural Network
+                .center
+                    img(src='img/network.png' height='350' width='700')
+                div Total number of layers: \(L\)
+                div Total number of units in layer \(l\): \(s_{l}\)
+                div Output of a neural unit in layer \(l\): \(z_{j}^{(l)}\)
+                div Activated value of a neural unit in layer \(l\): \(a_{j}^{(l)}\)
+                div Output label (Represent as one-hot vector): \(y \in \mathbb{R}^{k}\)
+                div Hypothethis function: \(h_{\theta}(x)_{k}\)
+            .step(data-x='6000', data-y='0', class='slide')
+                h2 Cost Function (Cross-Entropy)
+                div $${\tiny{J(\theta) = -\frac{1}{m} \sum_{t=1}^{m} \sum_{k=1}^{K} \lbrack y_{k}^{(t)}log h_{\Theta}(x^{(t)})_{k} + (1-y_{k}^{(t)})log(1-h_{\Theta}(x^{(t)})_{k}) \rbrack + \frac{\lambda}{2m}\sum_{l=1}^{L-1} \sum_{i=1}^{s_{l}} \sum_{j=1}^{s_{l} + 1}(\Theta_{j,i}^{(l)}})^{2}}$$
+                h4 Regularization
+                    ul
+                        li \(L_{1}=||x||_{1}\)
+                        li \(L_{2}=||x||_{2}^{2}\)
+                h4 Symmetry Breaking
+                div $$\theta_{ij}^{(l)} \in [-\epsilon, \epsilon]$$
+                h4 Scaling Inputs
+            .step(data-x='7500', data-y='0', class='slide')
+                h2 Backpropagation Algorithm
+                div Set \(\delta_{ij}^{(l)}=0\)
+                div For i = 1 to m
+                .indent Set \(a^{(1)}=x^{(x)}\)
+                .indent Perform forward propagation to compute \(a^{(l)}\) for all layers
+                .indent Using \(y^{(i)}\) to compute \(\delta^{(L)}=a^{(L)}-y^{(i)}\)
+                .indent Compute \(\delta^{(L-1)}...\delta^{(2)}\)
+                .indent \(\Delta_{i,j}^{(l)} := \Delta_{i,j}^{(l)} + a_{j}^{(l)}\delta_{i}^{(l+1)}\)
+                div \(D_{i,j}^{(l)}:=\frac{1}{m}(\Delta_{i,j}^{(l)} + \lambda\theta_{i,j}^{(l)}),\qquad if \quad j \ne 0\)
+                div \(D_{i,j}^{(l)}:=\frac{1}{m}\Delta_{i,j}^{(l)},\qquad if \quad j = 0\)
+                div $$D_{i,j}^{(l)} = \frac{\partial}{\partial \Theta_{i,j}^{(l)}}J(\Theta)$$
+            .step(data-x='7500', data-y='0', data-z='-2000', data-rotate-x='-90', class='slide')
+                h2 Backpropagation Algorithm
+                .center
+                    img(src='img/bp.png' height='300' width='700')
+                div $$g'(z^{(l)}) = a^{(l)} .* (1-a^{(l)})$$
+                div $$\delta^{(l)} = ((\Theta^{(l)})^{T}\delta^{(l+1)}).*a^{(l)}.*(1-a^{(l)})$$
+                div $$\delta_{j}^{(l)} = \frac{\partial}{\partial z_{j}^{(l)}}cost(i)$$
+            .step(data-x='9000', data-y='0', class='slide')
+                h2 Other Considerations
+                ul
+                    li Number of Hidden layers and Units
+                    li Multiple Minima
+            .step(data-x='10500', data-y='0', class='slide')
+                .center(style='padding-top:200px')
+                    h1 Thank you for Listening
+                .center References from #[a(href="#") Andrew Ng] and #[a(href="#") HsuanTien Lin]
+            #overview.step(data-x='4000', data-y='0', data-scale='10')
+        script(src='js/impress.js')
+        script(type='text/javascript').
+            impress().init()
