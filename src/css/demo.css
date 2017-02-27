@@ -35,6 +35,10 @@ li {
 	margin: 40px 0;
 }
 
+.subitem {
+	font-size: 24px;
+}
+
 .indent {
 	padding-left: 50px;
 }

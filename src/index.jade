@@ -14,7 +14,7 @@ html(lang="en")
                 h3(class='subtitle') Lyndon Li
                 h5(class='subtitle') Email: yi.a.li@rakuten.com
             .step(data-x='-1500', data-y='0' class='slide')
-                h2 Neural and Perceptron
+                h2 Neuron and Perceptron
                 img(src='img/neural.jpg' height='240' width='400')
                 img(src='img/perceptron.png' height='240' width='400' style='padding-left: 100px')
                 h5(class='subtitle')  A perceptron is an algorithm for supervised learning of binary classifiers.
@@ -38,6 +38,7 @@ html(lang="en")
                 h4 What if the problem is not classifiable by linear classifiers?
                 ul
                     li Logical XOR
+                    li Logical XNOR
                     li ...
                 br
                 h3 Here comes the neural network
@@ -63,9 +64,9 @@ html(lang="en")
                 h4 Scaling Inputs
             .step(data-x='7500', data-y='0', class='slide')
                 h2 Backpropagation Algorithm
-                div Set \(\delta_{ij}^{(l)}=0\)
+                div Set \(\Delta_{i,j}^{(l)}=0\)
                 div For i = 1 to m
-                .indent Set \(a^{(1)}=x^{(x)}\)
+                .indent Set \(a^{(1)}=x^{(i)}\)
                 .indent Perform forward propagation to compute \(a^{(l)}\) for all layers
                 .indent Using \(y^{(i)}\) to compute \(\delta^{(L)}=a^{(L)}-y^{(i)}\)
                 .indent Compute \(\delta^{(L-1)}...\delta^{(2)}\)
@@ -83,12 +84,16 @@ html(lang="en")
             .step(data-x='9000', data-y='0', class='slide')
                 h2 Other Considerations
                 ul
-                    li Number of Hidden layers and Units
-                    li Multiple Minima
+                    li
+                        div Number of Hidden Layers and Units
+                        .subitem Suggested value of hidden units is between 5 to 100.
+                    li
+                        div Multiple Minima
+                        .subitem Try with several different initial configurations if the cost function is not strictly convex, or via bagging strategy.
             .step(data-x='10500', data-y='0', class='slide')
                 .center(style='padding-top:200px')
                     h1 Thank you for Listening
-                .center References from #[a(href="#") Andrew Ng] and #[a(href="#") HsuanTien Lin]
+                .center References from #[a(href="http://www.andrewng.org/" target="_blank") Andrew Ng] and #[a(href="https://www.csie.ntu.edu.tw/~htlin/" target="_blank") HsuanTien Lin]
             #overview.step(data-x='4000', data-y='0', data-scale='10')
         script(src='js/impress.js')
         script(type='text/javascript').
